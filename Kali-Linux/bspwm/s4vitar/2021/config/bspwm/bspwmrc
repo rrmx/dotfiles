@@ -21,7 +21,7 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
 # wallpaper
-feh --bg-fill ~/.wallpapers/S4vitar.jpg
+feh --bg-fill ~/.config/polybar/wallpapers/S4vitar.jpg
 
 # polybar
 ~/.config/polybar/./launch.sh &

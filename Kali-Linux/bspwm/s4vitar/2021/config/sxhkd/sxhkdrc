@@ -133,3 +133,11 @@ super + ctrl + {Left,Down,Up,Right}
 # Custom move/resize
 alt + super + {Left,Down,Up,Right}
         ~/.config/bspwm/scripts/bspwm_resize {west,south,north,east} 
+
+#----------
+# programas
+#----------
+
+# Firefox
+super + alt + f
+        firejail /opt/firefox/firefox

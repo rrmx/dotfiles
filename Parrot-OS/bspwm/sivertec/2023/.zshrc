@@ -67,9 +67,9 @@ source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # syntax 
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # autocomplete
-#source /usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source /usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 # sudo
-#source /usr/share/zsh-plugins/sudo.zsh
+source /usr/share/zsh-plugins/sudo.zsh
 
 ## HISTORICO ##
 # history

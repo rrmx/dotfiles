@@ -47,28 +47,11 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# programs
-alias firefox='/opt/firefox/./firefox'
-alias nvim='/opt/nvim-linux64/bin/nvim'
-
 #---------------#
 #      ZSH      #
 #---------------#
 
 ## PLUGINS ##
-# suggestions
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  zstyle ':autocomplete:tab:*' insert-unambiguous yes
-  zstyle ':autocomplete:tab:*' widget-style menu-select
-  zstyle ':autocomplete:*' min-input 2
-  bindkey $key[Up] up-line-or-history
-  bindkey $key[Down] down-line-or-history
-# syntax
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# autocomplete
-#source /usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-# sudo
-#source /usr/share/sudo.plugins.zsh
 
 ## HISTORICO ##
 # history

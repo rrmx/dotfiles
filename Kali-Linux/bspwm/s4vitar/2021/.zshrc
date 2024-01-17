@@ -20,9 +20,6 @@ PROMPT="%F{red}┌[%f%F{cyan}%m%f%F{red}]─[%f%F{yellow}%D{%H:%M-%d/%m}%f%F{red
 
 export PATH=~/.local/bin:/snap/bin:/usr/sandbox/:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:$PATH
 
-echo -en "\e]2;Parrot Terminal\a"
-preexec () { print -Pn "\e]0;$1 - Parrot Terminal\a" }
-
 #---------------#
 #     ALIAS     #
 #---------------#
@@ -39,7 +36,6 @@ alias cat='/bin/batcat'
 alias catn='/bin/cat'
 alias catnl='/bin/bat --paging=never'
 
-
 # color
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
@@ -51,7 +47,44 @@ alias egrep='egrep --color=auto'
 #      ZSH      #
 #---------------#
 
-## PLUGINS ##
+# Plugins
+
+# syntaxhighlighting
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# autosuggestions
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# completion
+autoload -Uz compinit
+compinit -d ~/.cache/zcompdump
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' rehash true
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+# keybindings
+bindkey -e
+bindkey ' ' magic-space
+bindkey '^U' backward-kill-line
+bindkey '^[[3;5~' kill-word
+bindkey '^[[3~' delete-char
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+bindkey '^[[5~' beginning-of-buffer-or-history
+bindkey '^[[6~' end-of-buffer-or-history
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[[Z' undo
 
 ## HISTORICO ##
 # history
@@ -63,50 +96,34 @@ HISTFILE=~/.zsh_history
 #   FUNCIONES   #
 #---------------#
 
-# Basicas de zsh
-function hex-encode()
-{
-  echo "$@" | xxd -p
-}
-
-function hex-decode()
-{
-  echo "$@" | xxd -p -r
-}
-
-function rot13()
-{
-  echo "$@" | tr 'A-Za-z' 'N-ZA-Mn-za-m'
-}
-
 # Functions
 function mkt(){
-	mkdir {nmap,content,exploits}
+        mkdir {nmap,content,exploits}
 }
 
 # Extract nmap information
 function extractPorts(){
-	ports="$(cat $1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
-	ip_address="$(cat $1 | grep -oP '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' | sort -u | head -n 1)"
-	echo -e "\n[*] Extracting information...\n" > extractPorts.tmp
-	echo -e "\t[*] IP Address: $ip_address"  >> extractPorts.tmp
-	echo -e "\t[*] Open ports: $ports\n"  >> extractPorts.tmp
-	echo $ports | tr -d '\n' | xclip -sel clip
-	echo -e "[*] Ports copied to clipboard\n"  >> extractPorts.tmp
-	cat extractPorts.tmp; rm extractPorts.tmp
+        ports="$(cat $1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
+        ip_address="$(cat $1 | grep -oP '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' | sort -u | head -n 1)"
+        echo -e "\n[*] Extracting information...\n" > extractPorts.tmp
+        echo -e "\t[*] IP Address: $ip_address"  >> extractPorts.tmp
+        echo -e "\t[*] Open ports: $ports\n"  >> extractPorts.tmp
+        echo $ports | tr -d '\n' | xclip -sel clip
+        echo -e "[*] Ports copied to clipboard\n"  >> extractPorts.tmp
+        cat extractPorts.tmp; rm extractPorts.tmp
 }
 
 # Settarget
 
 function settarget(){
 
-	if [ $# -eq 1 ]; then
-	echo $1 > ~/.config/polybar/scripts/bin/target
-	elif [ $# -gt 2 ]; then
-	echo "settarget [IP] [NAME] | settarget [IP]"
-	else
-	echo $1 $2 > ~/.config/polybar/scripts/bin/target
-	fi
+        if [ $# -eq 1 ]; then
+        echo $1 > ~/.config/polybar/scripts/bin/target
+        elif [ $# -gt 2 ]; then
+        echo "settarget [IP] [NAME] | settarget [IP]"
+        else
+        echo $1 $2 > ~/.config/polybar/scripts/bin/target
+        fi
 }
 
 # Funcion
@@ -125,51 +142,34 @@ function man() {
 # Funcion
 function fzf-lovely(){
 
-	if [ "$1" = "h" ]; then
-		fzf -m --reverse --preview-window down:20 --preview '[[ $(file --mime {}) =~ binary ]] &&
- 	                echo {} is a binary file ||
-	                 (bat --style=numbers --color=always {} ||
-	                  highlight -O ansi -l {} ||
-	                  coderay {} ||
-	                  rougify {} ||
-	                  cat {}) 2> /dev/null | head -500'
+        if [ "$1" = "h" ]; then
+                fzf -m --reverse --preview-window down:20 --preview '[[ $(file --mime {}) =~ binary ]] &&
+                        echo {} is a binary file ||
+                         (bat --style=numbers --color=always {} ||
+                          highlight -O ansi -l {} ||
+                          coderay {} ||
+                          rougify {} ||
+                          cat {}) 2> /dev/null | head -500'
 
-	else
-	        fzf -m --preview '[[ $(file --mime {}) =~ binary ]] &&
-	                         echo {} is a binary file ||
-	                         (bat --style=numbers --color=always {} ||
-	                          highlight -O ansi -l {} ||
-	                          coderay {} ||
-	                          rougify {} ||
-	                          cat {}) 2> /dev/null | head -500'
-	fi
+        else
+                fzf -m --preview '[[ $(file --mime {}) =~ binary ]] &&
+                                 echo {} is a binary file ||
+                                 (bat --style=numbers --color=always {} ||
+                                  highlight -O ansi -l {} ||
+                                  coderay {} ||
+                                  rougify {} ||
+                                  cat {}) 2> /dev/null | head -500'
+        fi
 }
 
 # Funcion 
 function rmk(){
-	scrub -p dod $1
-	shred -zun 10 -v $1
+        scrub -p dod $1
+        shred -zun 10 -v $1
 }
 
-# Funcion
-function zle-keymap-select {
-  if [[ $KEYMAP == vicmd ]] || [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ $KEYMAP == main ]] || [[ $KEYMAP == viins ]] || [[ $KEYMAP = '' ]] || [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-zle -N zle-keymap-select
-zle-line-init() { zle-keymap-select 'beam'}
-
-# zfz
+# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-bindkey "^[[H" beginning-of-line
-bindkey "^[[F" end-of-line
-bindkey "^[[3~" delete-char
-bindkey "^[[1;3C" forward-word
-bindkey "^[[1;3D" backward-word
 
 # Prompt ~/.p10k.zsh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

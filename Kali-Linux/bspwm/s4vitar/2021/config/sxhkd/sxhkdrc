@@ -16,7 +16,7 @@ super + Return
 
 # program launcher
 super + d
-        rofi -show run
+        rofi -show drun -show-icons
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -140,4 +140,4 @@ alt + super + {Left,Down,Up,Right}
 
 # Firefox
 super + alt + f
-        firejail /opt/firefox/firefox
+        firefox

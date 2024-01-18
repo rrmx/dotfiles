@@ -47,7 +47,7 @@ alias egrep='egrep --color=auto'
 #      ZSH      #
 #---------------#
 
-# Plugins
+## Plugins ##
 
 # syntaxhighlighting
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -87,6 +87,7 @@ bindkey '^[[F' end-of-line
 bindkey '^[[Z' undo
 
 ## HISTORICO ##
+
 # history
 HISTSIZE=1000
 SAVEHIST=1000
@@ -178,4 +179,4 @@ function rmk(){
 (( ! ${+functions[p10k-instant-prompt-finalize]} )) || p10k-instant-prompt-finalize
 
 # power level 10k
-source ~/.powerlevel10k/powerlevel10k.zsh-theme
+source ~/.config/powerlevel10k/powerlevel10k.zsh-theme

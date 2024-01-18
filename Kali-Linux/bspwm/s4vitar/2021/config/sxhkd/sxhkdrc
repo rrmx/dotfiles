@@ -141,3 +141,15 @@ alt + super + {Left,Down,Up,Right}
 # Firefox
 super + alt + f
         firefox
+
+# Visual Studio Code
+super + alt + v
+        code
+
+# Spotify
+super + alt + s
+        spotify
+
+# Discord
+super + alt + d
+        discord

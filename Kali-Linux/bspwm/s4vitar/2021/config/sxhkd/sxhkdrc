@@ -135,33 +135,13 @@ alt + super + {Left,Down,Up,Right}
         ~/.config/bspwm/scripts/bspwm_resize {west,south,north,east} 
 
 #----------
-# mvolumen
-#----------
-
-# Volume Control
-XF86AudioLowerVolume
-	amixer set Master 5%-
-
-XF86AudioRaiseVolume
-	amixer set Master 5%+
-
-XF86AudioMute
-        amixer set Master toggle
-
-#---------
-#  brillo
-#----------
-
-# Brillo control
-
-brightnessctl set +10
-
-brightnessctl set 10-
-
-#----------
 # programas
 #----------
 
 # Firefox
 super + alt + f
         firefox
+
+# Bursuite
+super + alt + b
+        bursuite

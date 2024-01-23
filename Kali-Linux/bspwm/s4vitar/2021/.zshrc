@@ -15,11 +15,10 @@ fi
 #---------------#
 #  PROMPT y PAT #
 #---------------#
-
-PROMPT="%F{red}┌[%f%F{cyan}%m%f%F{red}]─[%f%F{yellow}%D{%H:%M-%d/%m}%f%F{red}]─[%f%F{magenta}%d%f%F{red}]%f"$'\n'"%F{red}└╼%f%F{green}$USER%f%F{yellow}$%f"
+PROMPT="%F{%(#.blue.green)}┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n㉿%m%b%F{%(#.blue.green)})-[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}]└─%B%(#.%F{red}#.%F{blue}$)%b%F{reset}"
 
 export PATH=~/.local/bin:/snap/bin:/usr/sandbox/:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:$PATH
-
+                                                                                                                                                                              
 #---------------#
 #     ALIAS     #
 #---------------#
@@ -179,4 +178,4 @@ function rmk(){
 (( ! ${+functions[p10k-instant-prompt-finalize]} )) || p10k-instant-prompt-finalize
 
 # power level 10k
-source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.powerlevel10k/powerlevel10k.zsh-theme

@@ -33,7 +33,7 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     os_icon                 # os identifier
     dir                     # current directory
-    vcs                     # git status
+    #vcs                    # git status
     status
     command_execution_time
     context

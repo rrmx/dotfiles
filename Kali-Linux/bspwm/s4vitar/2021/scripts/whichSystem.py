@@ -40,3 +40,4 @@ if __name__ == '__main__':
 
     os_name = get_os(ttl)
     print("\n\t%s (ttl -> %s): %s" % (ip_address, ttl, os_name))
+    
